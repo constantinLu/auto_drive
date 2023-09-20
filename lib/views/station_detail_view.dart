@@ -1,4 +1,4 @@
-import 'package:auto_drive/examples/fuel_old.dart';
+import 'package:auto_drive/model/fuel.dart';
 import 'package:flutter/material.dart';
 
 class StationDetailView extends StatelessWidget {
@@ -10,7 +10,7 @@ class StationDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: 250,
           width: double.infinity,
           child: Image.network(

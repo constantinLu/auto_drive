@@ -1,13 +1,12 @@
+import 'package:auto_drive/util/constants.dart';
 import 'package:auto_drive/util/palette.dart';
 import 'package:flutter/material.dart';
 
-import 'widget/intro.dart';
+import 'intro.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
-const APP_NAME = 'Auto Drive';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -17,12 +16,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       //TODO: add logo and auth by fingerprint
       //TODO: add logo and wait for 0.5 seconds to go to the home screen
-      title: APP_NAME,
+      title: appName,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         //useMaterial3: true
-        colorScheme: ColorScheme.fromSwatch(primarySwatch:Palette.white)
-            .copyWith(secondary: Palette.white),
+        colorScheme:
+            ColorScheme.fromSwatch(primarySwatch: Palette.white).copyWith(secondary: Palette.white),
       ),
       home: const Intro(),
     );

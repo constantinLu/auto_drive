@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:auto_drive/tabs.dart';
 import 'package:auto_drive/util/assets.dart';
-import 'package:auto_drive/views/tabs.dart';
 import 'package:flutter/material.dart';
 
 class Intro extends StatefulWidget {
@@ -31,7 +31,7 @@ class _IntroState extends State<Intro> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset(IMAGE_INTRO),
+        child: Image.asset(imageIntro),
       ),
     );
   }

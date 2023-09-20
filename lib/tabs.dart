@@ -1,9 +1,9 @@
 import 'package:auto_drive/util/palette.dart';
+import 'package:auto_drive/views/trip_splitter_view.dart';
 import 'package:auto_drive/widget/scraper.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../util/assets.dart';
+import 'util/assets.dart';
 
 class Tabs extends StatelessWidget {
   const Tabs({Key? key}) : super(key: key);
@@ -24,7 +24,7 @@ class Tabs extends StatelessWidget {
             labelColor: Palette.black_,
             tabs: [
               Tab(
-                icon: ImageIcon(AssetImage(ICON_GARAGE), color: Palette.black_),
+                icon: ImageIcon(AssetImage(iconGarage), color: Palette.black_),
                 text: "My Garage",
               ),
               Tab(icon: Icon(Icons.call_split, color: Palette.black_), text: "Split Trip"),
@@ -36,7 +36,7 @@ class Tabs extends StatelessWidget {
           children: [
             //Scraper
             Scraper(),
-            Center(child: Text("This will be my garage/home page")),
+            TripSplitter(),
             Center(
               child: Text("This will be the reminders, for insurance, etc"),
             ),
@@ -66,7 +66,7 @@ class AppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
         child: Text(
-      "Hello Constantin",
+      "Hello",
       style: TextStyle(fontWeight: FontWeight.w400),
       textScaleFactor: 0.7,
     ));

@@ -1,9 +1,9 @@
-import 'package:auto_drive/examples/fuel_old.dart';
+import 'package:auto_drive/model/fuel.dart';
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
 
-import '../examples/station_old.dart';
+import '../model/station.dart';
 
 class Scraper extends StatefulWidget {
   const Scraper({Key? key}) : super(key: key);
@@ -16,22 +16,12 @@ class _ScraperState extends State<Scraper> {
   // Strings to store the extracted Article titles
   List<Fuel> stationViewDataList = [];
 
-  // boolean to show CircularProgressIndication
-  // while Web Scraping awaits
-
-  //benzina-standard
-  //benzina-premium
-
-  //roman-neamt
-
-  //rompetrol
-  //mol
-
   Future<List<Fuel>> extractData() async {
     final List<Fuel> responseList = [];
-    final url = 'https://www.plinul.ro/pret/benzina-standard/iasi-iasi/rompetrol';
+    const url = 'https://www.plinul.ro/pret/benzina-standard/iasi-iasi/rompetrol';
+
     // Getting the response from the targeted url
-    await Future.delayed(Duration(seconds: 2), () async {
+    await Future.delayed(const Duration(seconds: 2), () async {
       final response = await http.Client().get(Uri.parse(url));
       // Status Code 200 means response has been received successfully
       if (response.statusCode == 200) {
@@ -68,19 +58,36 @@ class _ScraperState extends State<Scraper> {
     return responseList;
   }
 
-  @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      ListView.builder(
+    return Scaffold(
+      body: ListView.builder(
           padding: const EdgeInsets.all(8),
           itemCount: stationViewDataList.length,
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              height: 50,
-              child: Center(child: Text('Entry ${stationViewDataList[index].station.companyName}')),
+            Fuel currentFuel = stationViewDataList[index];
+            Station currentStation = currentFuel.station;
+
+            return ListTile(
+              leading: CircleAvatar(
+                // Displaying the station logo inside the CircleAvatar.
+                // Make sure the logo URL provided by the scraper is accessible.
+                // Otherwise, you might need to handle potential errors with displaying the image.
+                backgroundImage: NetworkImage(currentStation.logo),
+              ),
+              title: Text(currentStation.companyName),
+              subtitle:
+                  Text('Fuel Type: ${currentFuel.type}\nAddress: ${currentStation.address}'),
+              trailing: Text('${currentFuel.money} LEI'),
             );
           }),
-      FloatingActionButton.small(onPressed: () {extractData();})
-    ]);
+
+      /// floating action button
+      floatingActionButton: FloatingActionButton(
+        onPressed: extractData,
+        child: Text("Scrap"),
+      ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.endFloat, // Positioning it to the bottom right
+    );
   }
 }

@@ -16,6 +16,3 @@ double displayWidth(BuildContext context) {
   debugPrint('Width = $width');
   return width;
 }
-
-
-

@@ -10,12 +10,12 @@ dependencies:
   flutter:
     sdk: flutter
 
-  http: ^0.13.5
-  html: ^0.15.0
-  uuid: 3.0.6
-  cupertino_icons: ^1.0.2
-  money2: ^3.3.0
-  drift: ^2.2.0
+  http:
+  html:
+  uuid:
+  cupertino_icons:
+  money2:
+  drift:
 
 dev_dependencies:
   flutter_test:
