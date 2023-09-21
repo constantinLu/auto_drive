@@ -27,7 +27,6 @@ jobs:
 
       # - name: Build AAB
       #   run: flutter build appbundle --release
-
       - name: Deploy to Play Store
         uses: r0adkll/upload-google-play@v1
         with:
