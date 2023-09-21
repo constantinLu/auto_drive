@@ -3,7 +3,7 @@ name: Deploy to Play Store
 on:
   push:
     branches:
-      - main  # or whichever branch you want to trigger the deployment
+      - master  # or whichever branch you want to trigger the deployment
 
 jobs:
   build:
