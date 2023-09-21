@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.auto_drive">
+    package="com.devsite.auto_drive">
    <application
         android:label="auto_drive"
         android:name="${applicationName}"

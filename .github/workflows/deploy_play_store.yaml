@@ -23,7 +23,7 @@ jobs:
         run: flutter pub get
 
       - name: Build APK
-        run: flutter build apk --release
+        run: flutter build apk --release --no-tree-shake-icons
 
       # - name: Build AAB
       #   run: flutter build appbundle --release
@@ -31,8 +31,9 @@ jobs:
       - name: Deploy to Play Store
         uses: r0adkll/upload-google-play@v1
         with:
+          repoToken: '${{ secrets.REPO_TOKEN}}'
           serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_SERVICE_ACCOUNT_JSON }}
-          packageName: your.package.name # replace with your app's package name
+          packageName: com.devsite.auto_drive
           releaseFiles: build/app/outputs/flutter-apk/app-release.apk
           # releaseFiles: build/app/outputs/bundle/release/app-release.aab
           track: alpha  # or alpha, beta, internal

@@ -1,4 +1,4 @@
-package com.example.auto_drive;
+package com.devsite.auto_drive;
 
 import io.flutter.embedding.android.FlutterActivity;
 
