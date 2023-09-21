@@ -69,14 +69,10 @@ class _ScraperState extends State<Scraper> {
 
             return ListTile(
               leading: CircleAvatar(
-                // Displaying the station logo inside the CircleAvatar.
-                // Make sure the logo URL provided by the scraper is accessible.
-                // Otherwise, you might need to handle potential errors with displaying the image.
                 backgroundImage: NetworkImage(currentStation.logo),
               ),
               title: Text(currentStation.companyName),
-              subtitle:
-                  Text('Fuel Type: ${currentFuel.type}\nAddress: ${currentStation.address}'),
+              subtitle: Text('Fuel Type: ${currentFuel.type}\nAddress: ${currentStation.address}'),
               trailing: Text('${currentFuel.money} LEI'),
             );
           }),

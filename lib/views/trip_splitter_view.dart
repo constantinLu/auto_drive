@@ -18,6 +18,8 @@ class _TripSplitterState extends State<TripSplitter> {
 
   String? _kmPerL;
 
+  String? _noPeople;
+
   @override
   Widget build(BuildContext context) {
     // Responsive adjustments
@@ -57,21 +59,31 @@ class _TripSplitterState extends State<TripSplitter> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
                   decoration: const InputDecoration(labelText: 'Price'),
                   validator: validateNumber,
                   onSaved: (value) => _price = value,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
                   decoration: const InputDecoration(labelText: 'Distance'),
                   validator: validateNumber,
                   onSaved: (value) => _distance = value,
                 ),
                 TextFormField(
                   keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
                   decoration: const InputDecoration(labelText: 'km/l'),
                   validator: validateNumber,
                   onSaved: (value) => _kmPerL = value,
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.done,
+                  decoration: const InputDecoration(labelText: 'No. people'),
+                  validator: validateNumber,
+                  onSaved: (value) => _noPeople = value,
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
@@ -103,15 +115,26 @@ class _TripSplitterState extends State<TripSplitter> {
       double price = double.parse(_price!);
       double distance = double.parse(_distance!);
       double kmPerL = double.parse(_kmPerL!);
+      double noPeople = double.parse(_noPeople!);
 
       double totalCost = (distance / kmPerL) * price;
+      double costByPerson = totalCost / noPeople;
 
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Calculation Result'),
-            content: Text('Total cost for the trip is: ${totalCost.toStringAsFixed(2)} RON'),
+            title: const Center(child: Text('Trip Calculator')),
+            content: SizedBox(
+              width: 80,
+              height: 40,
+              child: Column(
+                children: [
+                  Text('Cost for the trip is: ${totalCost.toStringAsFixed(2)} RON'),
+                  Text('Price by person is: ${costByPerson.toStringAsFixed(2)} RON')
+                ],
+              ),
+            ),
             actions: [
               TextButton(
                 child: const Text('Close'),
