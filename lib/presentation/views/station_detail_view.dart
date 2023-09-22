@@ -1,5 +1,6 @@
-import 'package:auto_drive/model/fuel.dart';
 import 'package:flutter/material.dart';
+
+import '../../domain/model/fuel.dart';
 
 class StationDetailView extends StatelessWidget {
   Fuel fuel;

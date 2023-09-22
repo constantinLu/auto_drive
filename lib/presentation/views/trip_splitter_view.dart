@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class TripSplitter extends StatefulWidget {
-  const TripSplitter({super.key});
+class TripSplitterView extends StatefulWidget {
+  const TripSplitterView({super.key});
 
   @override
-  State<TripSplitter> createState() => _TripSplitterState();
+  State<TripSplitterView> createState() => _TripSplitterViewState();
 }
 
-class _TripSplitterState extends State<TripSplitter> {
+class _TripSplitterViewState extends State<TripSplitterView> {
   final _formKey = GlobalKey<FormState>();
 
   String? _fuelType = 'DIESEL';
@@ -28,7 +28,6 @@ class _TripSplitterState extends State<TripSplitter> {
     double padding = (screenWidth - formWidth) / 2;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Fuel Form')),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: padding),

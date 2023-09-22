@@ -1,14 +1,12 @@
-import 'package:auto_drive/util/palette.dart';
-import 'package:auto_drive/views/trip_splitter_view.dart';
-import 'package:auto_drive/widget/scraper.dart';
+import 'package:auto_drive/presentation/views/fuel_list_view.dart';
+import 'package:auto_drive/presentation/views/trip_splitter_view.dart';
 import 'package:flutter/material.dart';
+import 'package:mystique/mystique.dart';
 
-import 'util/assets.dart';
+import '../infra/util/assets.dart';
 
 class Tabs extends StatelessWidget {
   const Tabs({Key? key}) : super(key: key);
-
-  static const String _title = 'Flutter Code Sample';
 
   @override
   Widget build(BuildContext context) {
@@ -21,25 +19,20 @@ class Tabs extends StatelessWidget {
           title: const AppBarTitle(),
           actions: [IconButton(icon: const Icon(Icons.notifications), onPressed: () {})],
           bottom: const TabBar(
-            labelColor: Palette.black_,
+            labelColor: kcBlackFull,
             tabs: [
-              Tab(
-                icon: ImageIcon(AssetImage(iconGarage), color: Palette.black_),
-                text: "My Garage",
-              ),
-              Tab(icon: Icon(Icons.call_split, color: Palette.black_), text: "Split Trip"),
-              Tab(icon: Icon(Icons.alarm, color: Palette.black_), text: "Reminders"),
+              Tab(icon: ImageIcon(AssetImage(iconGarage), color: kcBlackFull), text: "My Garage"),
+              Tab(icon: Icon(Icons.call_split, color: kcBlackFull), text: "Split Trip"),
+              Tab(icon: Icon(Icons.alarm, color: kcBlackFull), text: "Reminders"),
             ],
           ),
         ),
         body: const TabBarView(
           children: [
             //Scraper
-            Scraper(),
-            TripSplitter(),
-            Center(
-              child: Text("This will be the reminders, for insurance, etc"),
-            ),
+            FuelListTab(),
+            TripSplitterView(),
+            Center(child: Text("This will be the reminders, for insurance, etc")),
           ],
         ),
       ),
@@ -55,7 +48,7 @@ class Avatar extends StatelessWidget {
     return const Center(
         child: Padding(
             padding: EdgeInsets.all(12),
-            child: CircleAvatar(backgroundColor: Palette.black_, child: Text("LC"))));
+            child: CircleAvatar(backgroundColor: kcBlackFull, child: Text("LC"))));
   }
 }
 

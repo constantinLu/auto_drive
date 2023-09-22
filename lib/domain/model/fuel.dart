@@ -1,4 +1,4 @@
-import 'package:auto_drive/model/station.dart';
+import 'package:auto_drive/domain/model/station.dart';
 import 'package:uuid/uuid.dart';
 
 class Fuel {

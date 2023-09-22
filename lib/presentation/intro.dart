@@ -1,8 +1,9 @@
 import 'dart:async';
 
-import 'package:auto_drive/tabs.dart';
-import 'package:auto_drive/util/assets.dart';
+import 'package:auto_drive/presentation/tabs.dart';
 import 'package:flutter/material.dart';
+
+import '../infra/util/assets.dart';
 
 class Intro extends StatefulWidget {
   const Intro({Key? key}) : super(key: key);

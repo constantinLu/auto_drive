@@ -10,17 +10,38 @@ dependencies:
   flutter:
     sdk: flutter
 
+  #mandatory
+  bloc:
+  flutter_bloc:
+  freezed_annotation:
   http:
+  flutter_launcher_icons:
+  injectable: #dependency injection
+  get_it: #service locator #getIT and injectable are needed
+  auto_route: #routing
+
+  flutter_svg:
+  fpdart: #functional programming
   html:
   uuid:
   cupertino_icons:
   money2:
   drift:
+  mystique:
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+
+  #mandatory
+  flutter_lints:
+  build_runner:
+  freezed:
+  injectable_generator:
+  auto_route_generator:
+
 
 flutter:
   uses-material-design: true
@@ -30,7 +51,13 @@ flutter:
     - assets/icons/garage_icon.png
 
 
-  
+#providing the icon app
+flutter_launcher_icons:
+  image_path: "assets/images/auto_drive_logo_transparent_200x200.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+
   
 
   
