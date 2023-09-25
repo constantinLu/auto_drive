@@ -29,13 +29,15 @@ jobs:
       - name: Decode Keystore
         run: echo "${{ secrets.ENCODED_KEYSTORE }}" | base64 -d > ./autodrive-prod.keystore
 
-      - name: Sign and Build AAB
+      - name: Set up Keystore Environment
         run: |
-          flutter build appbundle --release --no-tree-shake-icons \
-          --dart-define=KEYSTORE_PATH=./autodrive-prod.keystore \
-          --dart-define=KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }} \
-          --dart-define=KEY_ALIAS=${{ secrets.KEY_ALIAS }} \
-          --dart-define=KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}
+          echo "KEYSTORE_PATH=./autodrive-prod.keystore" >> $GITHUB_ENV
+          echo "KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
+          echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
+          echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
+
+      - name: Sign and Build AAB
+        run: flutter build appbundle --release --no-tree-shake-icons
 
       - name: Deploy to Play Store
         uses: r0adkll/upload-google-play@v1
