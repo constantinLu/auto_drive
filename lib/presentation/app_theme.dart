@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mystique/mystique.dart';
 
-import '../domain/model/app_theme.dart';
-
-
 class AppTheme {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return isDarkTheme ? ThemeColors.darkTheme : ThemeColors.lightTheme;
@@ -18,23 +15,58 @@ class ThemeColors {
   static final lightTheme = ThemeData(
     brightness: Brightness.light,
     fontFamily: 'TT-Commons',
-    primaryColor: kcWhiteCultured,
-    scaffoldBackgroundColor: kcWhitePure,
+    primaryColor: kcRevolutWhite,
+
+    scaffoldBackgroundColor: kcRevolutWhite,
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    colorScheme: ColorScheme.light(),
+    colorScheme: ColorScheme.light().copyWith(primary: kcBlackErie, secondary: kcGreySpanish),
     appBarTheme: const AppBarTheme(
-      backgroundColor: kcDarkGreyColor,
+      backgroundColor: kcRevolutWhite,
     ),
+
+    /// tab bar theme
+    tabBarTheme: TabBarTheme(
+        indicatorColor: Colors.redAccent,
+        labelStyle: TextStyle(fontSize: 5),
+        unselectedLabelStyle: TextStyle(fontSize: 5)),
+
+    /// text theme
     textTheme: const TextTheme(
       labelLarge: TextStyle(color: kcBlackFull),
       bodyMedium: TextStyle(color: kcBlackFull),
     ),
+
+    ///button colors:
+    buttonTheme: const ButtonThemeData(
+      buttonColor: kcRevolutWhite, // background color for RaisedButtons
+      textTheme: ButtonTextTheme.primary, // color for text on the button
+    ),
+    iconTheme: const IconThemeData(
+      color: kcRevolutWhite, // default color for IconButtons and other icons
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: kcRevolutWhite, // background color for FAB
+      foregroundColor: kcBlackCarbon, // icon color for FAB
+    ),
+
+    ///elevated button
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+          (Set<MaterialState> states) {
+            if (states.contains(MaterialState.pressed)) {
+              return kcRevolutWhite.withOpacity(0.8); // Color when the button is pressed
+            }
+            return kcRevolutWhite; // Default color
+          },
+        ),
+        foregroundColor: MaterialStateProperty.all(kcBlackCarbon), // text/icon color
+      ),
+    ),
   );
 
   /// DARK THEME
-  /// CONFIGURED
   static final darkTheme = ThemeData(
-    brightness: Brightness.dark,
     fontFamily: 'TT-Commons',
     primaryColor: kcWhiteCultured,
     scaffoldBackgroundColor: kcDarkGreyColor,
@@ -61,8 +93,53 @@ class ThemeColors {
       bodyMedium: TextStyle(color: kcWhiteCultured),
       bodySmall: TextStyle(color: kcWhiteCultured),
     ),
+
+    ///app bar
     appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: kcDarkGreyColorBold,
+    ),
+
+    colorScheme: const ColorScheme.dark().copyWith(
+      primary: kcBlackErie,
+      secondary: kcGreySpanish,
+    ),
+
+    /// tab bar theme
+    tabBarTheme: const TabBarTheme(
+        indicatorColor: kcDevsiteTurcoise,
+        labelStyle: TextStyle(fontSize: 8),
+        unselectedLabelStyle: TextStyle(fontSize: 6),
+        unselectedLabelColor: kcGreyDim),
+    // color for unselected text and icon in dark mode
+
+    ///button colors
+    buttonTheme: const ButtonThemeData(
+      buttonColor: kcGreyDim, // background color for RaisedButtons
+      textTheme: ButtonTextTheme.primary, // color for text on the button
+    ),
+
+    ///icon color
+    iconTheme: const IconThemeData(
+      color: kcRevolutWhite,
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: kcGreyDim,
+      foregroundColor: kcRevolutWhite,
+    ),
+
+    ///elevated button
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+          (Set<MaterialState> states) {
+            if (states.contains(MaterialState.pressed)) {
+              return kcRevolutWhite.withOpacity(0.8); // Color when the button is pressed
+            }
+            return kcRevolutWhite; // Default color
+          },
+        ),
+        foregroundColor: MaterialStateProperty.all(kcBlackCarbon), // text/icon color
+      ),
     ),
   );
 }
@@ -74,7 +151,7 @@ extension ThemeExtras on ThemeData {
   Color get textColor => brightness == Brightness.light ? kcBlackCarbon : kcWhiteCultured;
 
   //
-  Color get secondaryColor => Colors.cyanAccent;
+  Color get secondaryColor => Colors.redAccent;
 
   //
   Gradient get serviceCard => brightness == Brightness.light ? grayWhite : grayBack;
@@ -98,3 +175,15 @@ class AppThemeUtil {
 
   get theme => Theme.of(context);
 }
+
+const grayBack = LinearGradient(
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [Color(0XFF2E2D36), Color(0XFF11101D)],
+);
+
+const grayWhite = LinearGradient(
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [Color(0xFFFFFFFF), Color(0xFFF3F2FF)],
+);

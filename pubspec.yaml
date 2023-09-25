@@ -49,6 +49,10 @@ flutter:
     - assets/images/auto_drive.png
     - assets/images/avatar.png
     - assets/icons/garage_icon.png
+    - assets/images/auto_drive_logo_transparent_200x200.png
+    - assets/images/car_line.jpg
+    - assets/images/lambo.png
+    - assets/images/graph.png
 
 
 #providing the icon app

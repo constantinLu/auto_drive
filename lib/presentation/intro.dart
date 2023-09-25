@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:auto_drive/presentation/tabs.dart';
+import 'package:auto_drive/presentation/widget/dashboard.dart';
 import 'package:flutter/material.dart';
 
 import '../infra/util/assets.dart';
@@ -25,7 +25,7 @@ class _IntroState extends State<Intro> {
   }
 
   route() {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Tabs()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DashboardWidget()));
   }
 
   @override

@@ -1,6 +1,6 @@
 import 'package:auto_drive/application/bloc/scraper/scraper_bloc.dart';
 import 'package:auto_drive/application/bloc/theme_bloc.dart';
-import 'package:auto_drive/domain/model/app_theme.dart';
+import 'package:auto_drive/presentation/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: appName,
         debugShowCheckedModeBanner: false,
-        theme: AppTheme.themeData(false, context),
+        theme: AppTheme.themeData(true, context),
         home: Intro(),
       ),
     );
