@@ -22,11 +22,11 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build APK
-        run: flutter build apk --release --no-tree-shake-icons
-
-      # - name: Build AAB
-      #   run: flutter build appbundle --release
+#      - name: Build APK
+#        run: flutter build apk --release --no-tree-shake-icons
+#
+      - name: Build AAB
+        run: flutter build appbundle  --release --no-tree-shake-icons
 #      - name: Deploy to Play Store
 #        uses: r0adkll/upload-google-play@v1
 #        with:
