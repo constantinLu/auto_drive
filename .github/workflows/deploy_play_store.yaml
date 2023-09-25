@@ -22,16 +22,18 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Decode Keystore
+        run: echo "${{ secrets.ENCODED_KEYSTORE }}" | base64 -d > ./autodrive-prod.keystore
 
       - name: Generate freezed classes
         run: dart run build_runner build --delete-conflicting-outputs
 
-      - name: Decode Keystore
-        run: echo "${{ secrets.ENCODED_KEYSTORE }}" | base64 -d > ./autodrive-prod.keystore
+      - name: List files to check keystore
+        run: ls -la
 
       - name: Set up Keystore Environment
         run: |
-          echo "KEYSTORE_PATH=./autodrive-prod.keystore" >> $GITHUB_ENV
+          echo "KEYSTORE_PATH=$(pwd)/autodrive-prod.keystore" >> $GITHUB_ENV
           echo "KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
           echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
           echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
