@@ -139,4 +139,5 @@ app.*.symbols
 
 
 # Freezed classes
-**.freezed
+**/*.freezed.dart
+/lib/infra/setup/injection.config.dart
