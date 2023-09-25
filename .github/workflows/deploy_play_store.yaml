@@ -22,16 +22,20 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-#      - name: Build APK
-#        run: flutter build apk --release --no-tree-shake-icons
-#
+
+      - name: Generate freezed classes
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      #      - name: Build APK
+      #        run: flutter build apk --release --no-tree-shake-icons
+      #
       - name: Build AAB
         run: flutter build appbundle  --release --no-tree-shake-icons
-#      - name: Deploy to Play Store
-#        uses: r0adkll/upload-google-play@v1
-#        with:
-#          serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_SERVICE_ACCOUNT_JSON }}
-#          packageName: com.devsite.auto_drive
-#          releaseFiles: build/app/outputs/flutter-apk/app-release.apk
-#          # releaseFiles: build/app/outputs/bundle/release/app-release.aab
-#          track: alpha  # or alpha, beta, internal
+      - name: Deploy to Play Store
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_SERVICE_ACCOUNT_JSON }}
+          packageName: com.devsite.auto_drive
+          releaseFiles: build/app/outputs/flutter-apk/app-release.apk
+          # releaseFiles: build/app/outputs/bundle/release/app-release.aab
+          track: alpha  # or alpha, beta, internal
