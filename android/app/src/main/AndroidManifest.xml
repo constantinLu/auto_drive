@@ -2,6 +2,7 @@
     package="com.devsite.auto_drive">
    <application
         android:label="Autodrive"
+        android:name="Autodrive"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
