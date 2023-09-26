@@ -77,7 +77,7 @@ jobs:
 
       - name: Set up Keystore Environment
         run: |
-          run: echo "KEYSTORE_PATH=/home/app/autodrive-prod.keystore" >> $GITHUB_ENV
+          echo "KEYSTORE_PATH=/home/app/autodrive-prod.keystore" >> $GITHUB_ENV
           echo "KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
           echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
           echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
