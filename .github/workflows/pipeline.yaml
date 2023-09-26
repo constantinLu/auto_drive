@@ -20,11 +20,11 @@ jobs:
       - name: Install GitVersion
         uses: GitTools/actions@v0.10.2
         with:
-          versionSpec: "5.x"
+          versionSpec: "6.x"
 
       - name: Use GitVersion
         id: gitversion
-        uses: gittools/actions/gitversion/execute@v0.9.7
+        uses: gittools/actions/gitversion/execute@v0.9.13
 
       - name: Create version.txt with nuGetVersion
         run: echo ${{ steps.gitversion.outputs.nuGetVersion  }} > version.txt
@@ -106,7 +106,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/bundle/release/app-release.aab"
-          #rtifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/app-release.aab"
+          #artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/app-release.aab"
           token: ${{ secrets.GH_TOKEN }}
           tag: ${{ steps.version.outputs.content }}
           commit: ${{ github.sha }}
@@ -128,6 +128,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: appbundle
+
       - name: Release app to internal track
         uses: r0adkll/upload-google-play@v1
         with:
