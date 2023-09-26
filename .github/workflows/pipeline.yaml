@@ -27,7 +27,7 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0.9.7
 
       - name: Create version.txt with nuGetVersion
-        run: echo ${{ steps.gitversion.outputs.nuGetVersion  }}.${{ github.run_number }} > version.txt
+        run: echo ${{ steps.gitversion.outputs.nuGetVersion  }} > version.txt
 
       - name: Upload version.txt
         uses: actions/upload-artifact@v2
