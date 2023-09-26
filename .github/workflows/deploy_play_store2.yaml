@@ -63,9 +63,6 @@ jobs:
       - name: Decode Keystore
         run: echo "${{ secrets.ENCODED_KEYSTORE }}" | base64 -d > ./autodrive-prod.keystore
 
-#      - name: Generate freezed classes
-#        run: dart run build_runner build --delete-conflicting-outputs
-
       - name: List files to check keystore
         run: ls -la
 
@@ -76,14 +73,6 @@ jobs:
           echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
           echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
 
-#
-#      - name: Decode Keystore
-#        run: echo "${{ secrets.ENCODED_KEYSTORE }}" | base64 -d > ./autodrive-prod.keystore
-#      - name: Update KeyStore password in gradle properties
-#        run: sed -i 's/#{KEYSTORE_PASSWORD}#/${{ secrets.KEYSTORE_PASSWORD }}/g' ${{ github.workspace }}/android/key.properties
-#        #run: sed -i 's/#{KEYSTORE_PASSWORD}#/${{ secrets.KEYSTORE_PASSWORD }}/g' android/key.properties
-#      - name: Update KeyStore key password in gradle properties
-#        run: sed -i 's/#{KEY_PASSWORD}#/${{ secrets.KEY_PASSWORD }}/g' android/key.properties
 
       - uses: actions/setup-java@v1
         with:
@@ -95,8 +84,8 @@ jobs:
       - run: flutter pub get
       - name: Generate freezed classes
         run: dart run build_runner build --delete-conflicting-outputs
-      - run: flutter build apk --release --split-per-abi
-      - run: flutter build appbundle --release
+      #- run: flutter build apk --release --split-per-abi
+      - run: flutter build appbundle --release --no-tree-shake-icons
 
       - name: Create a Release in GitHub
         uses: ncipollo/release-action@v1
