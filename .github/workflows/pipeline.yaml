@@ -27,7 +27,7 @@ jobs:
         uses: gittools/actions/gitversion/execute@v0.9.7
 
       - name: Create version.txt with nuGetVersion
-        run: echo ${{ steps.gitversion.outputs.nuGetVersion  }} > version.txt
+        run: echo ${{ steps.gitversion.outputs.nuGetVersion  }}.${{ github.run_number }} > version.txt
 
       - name: Upload version.txt
         uses: actions/upload-artifact@v2
@@ -57,7 +57,8 @@ jobs:
           path: version1.txt
 
       - name: Update version in YAML
-        run: sed -i 's/99.99.99+99/${{ steps.version.outputs.content }}+${{ github.run_number }}/g' pubspec.yaml
+        #run: sed -i 's/99.99.99+99/${{ steps.version.outputs.content }}+${{ github.run_number }}/g' pubspec.yaml
+        run: sed -i 's/99.99.99+99/${{ steps.version.outputs.content }}/g' pubspec.yaml
 
       #the secrets.KEYSTORE_PATH is from github-repo
       - name: Decode Keystore
