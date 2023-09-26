@@ -58,6 +58,9 @@ jobs:
 
       - name: Update version in YAML
         run: sed -i 's/99.99.99+99/${{ steps.version.outputs.content }}+${{ github.run_number }}/g' pubspec.yaml
+
+      - name: Decode Keystore
+        run: echo "${{ secrets.ENCODED_KEYSTORE }}" | base64 -d > ./autodrive-prod.keystore
       - name: Update KeyStore password in gradle properties
         run: sed -i 's/#{KEYSTORE_PASSWORD}#/${{ secrets.KEYSTORE_PASSWORD }}/g' ${{ github.workspace }}/android/key.properties
         #run: sed -i 's/#{KEYSTORE_PASSWORD}#/${{ secrets.KEYSTORE_PASSWORD }}/g' android/key.properties
@@ -72,6 +75,8 @@ jobs:
           channel: "stable"
       - run: flutter clean
       - run: flutter pub get
+      - name: Generate freezed classes
+        run: dart run build_runner build --delete-conflicting-outputs
       - run: flutter build apk --release --split-per-abi
       - run: flutter build appbundle --release
 
