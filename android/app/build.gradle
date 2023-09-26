@@ -26,28 +26,34 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 
+//def keystoreProperties = new Properties()
+//
+//if (System.getenv("CI")) {  // Checks if in CI environment
+//    println "Running in CI environment"
+//
+//    keystoreProperties['storeFile'] = System.getenv("KEYSTORE_PATH")
+//    println "Keystore Path: ${keystoreProperties['storeFile']}"
+//
+//    keystoreProperties['keyAlias'] = System.getenv("KEY_ALIAS")
+//    println "Key Alias: ${keystoreProperties['keyAlias']}"
+//
+//    keystoreProperties['keyPassword'] = System.getenv("KEY_PASSWORD")
+//    println "Key Password: ${keystoreProperties['keyPassword']}"
+//
+//    keystoreProperties['storePassword'] = System.getenv("KEYSTORE_PASSWORD")
+//    println "Store Password: ${keystoreProperties['storePassword']}"
+//} else {
+//    println "Running locally"
+//    def keystorePropertiesFile = rootProject.file('key.properties')
+//    if (keystorePropertiesFile.exists()) {
+//        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+//    }
+//}
+
 def keystoreProperties = new Properties()
-
-if (System.getenv("CI")) {  // Checks if in CI environment
-    println "Running in CI environment"
-
-    keystoreProperties['storeFile'] = System.getenv("KEYSTORE_PATH")
-    println "Keystore Path: ${keystoreProperties['storeFile']}"
-
-    keystoreProperties['keyAlias'] = System.getenv("KEY_ALIAS")
-    println "Key Alias: ${keystoreProperties['keyAlias']}"
-
-    keystoreProperties['keyPassword'] = System.getenv("KEY_PASSWORD")
-    println "Key Password: ${keystoreProperties['keyPassword']}"
-
-    keystoreProperties['storePassword'] = System.getenv("KEYSTORE_PASSWORD")
-    println "Store Password: ${keystoreProperties['storePassword']}"
-} else {
-    println "Running locally"
-    def keystorePropertiesFile = rootProject.file('key.properties')
-    if (keystorePropertiesFile.exists()) {
-        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-    }
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
 android {
