@@ -59,7 +59,7 @@ jobs:
       - name: Update version in YAML
         run: sed -i 's/99.99.99+99/${{ steps.version.outputs.content }}+${{ github.run_number }}/g' pubspec.yaml
 
-
+      #the secrets.KEYSTORE_PATH is from github-repo
       - name: Decode Keystore
         run: echo "${{ secrets.KEYSTORE_PATH }}" | base64 -d > ./autodrive-prod.keystore
 
