@@ -2,7 +2,7 @@ name: Flutter CI/CD
 
 on:
   push:
-    branches: [master] # or whichever branch you want to trigger the deployment
+    branches: [ master ] # or whichever branch you want to trigger the deployment
 
 jobs:
   #VERSIONING OF BRANCHES
@@ -38,7 +38,7 @@ jobs:
   # ACTUAL BUILD
   build:
     name: Build APK and Create release
-    needs: [version]
+    needs: [ version ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -59,13 +59,31 @@ jobs:
       - name: Update version in YAML
         run: sed -i 's/99.99.99+99/${{ steps.version.outputs.content }}+${{ github.run_number }}/g' pubspec.yaml
 
+
       - name: Decode Keystore
         run: echo "${{ secrets.ENCODED_KEYSTORE }}" | base64 -d > ./autodrive-prod.keystore
-      - name: Update KeyStore password in gradle properties
-        run: sed -i 's/#{KEYSTORE_PASSWORD}#/${{ secrets.KEYSTORE_PASSWORD }}/g' ${{ github.workspace }}/android/key.properties
-        #run: sed -i 's/#{KEYSTORE_PASSWORD}#/${{ secrets.KEYSTORE_PASSWORD }}/g' android/key.properties
-      - name: Update KeyStore key password in gradle properties
-        run: sed -i 's/#{KEY_PASSWORD}#/${{ secrets.KEY_PASSWORD }}/g' android/key.properties
+
+      - name: Generate freezed classes
+        run: dart run build_runner build --delete-conflicting-outputs
+
+      - name: List files to check keystore
+        run: ls -la
+
+      - name: Set up Keystore Environment
+        run: |
+          echo "KEYSTORE_PATH=./autodrive-prod.keystore" >> $GITHUB_ENV
+          echo "KEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
+          echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV
+          echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
+        #
+#
+#      - name: Decode Keystore
+#        run: echo "${{ secrets.ENCODED_KEYSTORE }}" | base64 -d > ./autodrive-prod.keystore
+#      - name: Update KeyStore password in gradle properties
+#        run: sed -i 's/#{KEYSTORE_PASSWORD}#/${{ secrets.KEYSTORE_PASSWORD }}/g' ${{ github.workspace }}/android/key.properties
+#        #run: sed -i 's/#{KEYSTORE_PASSWORD}#/${{ secrets.KEYSTORE_PASSWORD }}/g' android/key.properties
+#      - name: Update KeyStore key password in gradle properties
+#        run: sed -i 's/#{KEY_PASSWORD}#/${{ secrets.KEY_PASSWORD }}/g' android/key.properties
 
       - uses: actions/setup-java@v1
         with:
@@ -97,7 +115,7 @@ jobs:
   #RELEASE
   release:
     name: Release app to internal track
-    needs: [build]
+    needs: [ build ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
