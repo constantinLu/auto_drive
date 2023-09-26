@@ -63,6 +63,12 @@ jobs:
       - name: Decode Keystore
         run: echo "${{ secrets.ENCODED_KEYSTORE }}" | base64 -d > ./autodrive-prod.keystore
 
+      - name: Create /home/app directory
+        run: sudo mkdir -p /home/app
+
+      - name: Set keystore permissions
+        run: sudo chmod 644 /home/app/***.keystore
+
       - name: Move Keystore to /home/app
         run: sudo mv ./autodrive-prod.keystore /home/app/
 
