@@ -61,7 +61,7 @@ jobs:
 
 
       - name: Decode Keystore
-        run: echo "${{ secrets.ENCODED_KEYSTORE }}" | base64 -d > ./autodrive-prod.keystore
+        run: echo "${{ secrets.KEYSTORE_PATH }}" | base64 -d > ./autodrive-prod.keystore
 
       - name: Create /home/app directory
         run: sudo mkdir -p /home/app
