@@ -134,4 +134,4 @@ jobs:
           packageName: com.devsite.auto_drive
           releaseFiles: app-release.aab
           track: alpha
-          #status: completed
+          status: completed
