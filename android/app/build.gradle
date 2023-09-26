@@ -62,7 +62,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file(System.getenv("KEYSTORE_PATH") ?: "C:\\Users\\gizet\\.android\\keystore\\autodrive-prod.keystore")
+            storeFile file('/home/runner/work/auto_drive/auto_drive/***/app/***.keystore')
             storePassword System.getenv("KEYSTORE_PASSWORD")
             keyAlias System.getenv("KEY_ALIAS")
             keyPassword System.getenv("KEY_PASSWORD")

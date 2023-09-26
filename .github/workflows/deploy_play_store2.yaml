@@ -92,7 +92,7 @@ jobs:
           echo $KEY_ALIAS
           echo $KEY_PASSWORD
 
-      - run: flutter build appbundle --release --no-tree-shake-icons --dart-define=KEYSTORE_PATH=$KEYSTORE_PATH --dart-define=KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD --dart-define=KEY_ALIAS=$KEY_ALIAS --dart-define=KEY_PASSWORD=$KEY_PASSWORD
+      - run: flutter build appbundle --release --no-tree-shake-icons
 
       - name: Create a Release in GitHub
         uses: ncipollo/release-action@v1
