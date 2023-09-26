@@ -57,7 +57,7 @@ jobs:
           path: version1.txt
 
       - name: Update version in YAML
-        run: sed -i 's/99.99.99+99/${{ steps.version.outputs.content }}+${{ github.run_number+1 }}/g' pubspec.yaml
+        run: sed -i 's/99.99.99+99/${{ steps.version.outputs.content }}+${{ github.run_number}}/g' pubspec.yaml
         #run: sed -i 's/99.99.99+99/${{ steps.version.outputs.content }}/g' pubspec.yaml
 
       #the secrets.KEYSTORE_PATH is from github-repo
