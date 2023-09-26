@@ -69,7 +69,7 @@ jobs:
           java-version: "12.x"
       - uses: subosito/flutter-action@v1
         with:
-          channel: "beta"
+          channel: "stable"
       - run: flutter clean
       - run: flutter pub get
       - run: flutter build apk --release --split-per-abi
