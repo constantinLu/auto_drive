@@ -67,7 +67,7 @@ jobs:
         run: sudo mkdir -p /home/app
 
       - name: Set keystore permissions
-        run: sudo chmod 644 /home/app/***.keystore
+        run: sudo chmod 644 /home/app/autodrive-prod.keystore
 
       - name: Move Keystore to /home/app
         run: sudo mv ./autodrive-prod.keystore /home/app/
