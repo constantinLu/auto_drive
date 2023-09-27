@@ -1,5 +1,6 @@
 import 'package:auto_drive/application/bloc/scraper/scraper_bloc.dart';
 import 'package:auto_drive/application/bloc/theme_bloc.dart';
+import 'package:auto_drive/presentation/router/app_router.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,6 +13,6 @@ void setup() {
   getIt.registerSingleton<ScraperService>(ScraperService());
   getIt.registerSingleton<ScraperBloc>(ScraperBloc());
   getIt.registerSingleton<ThemeBloc>(ThemeBloc());
-  //print(getIt.isRegistered<ScraperService>());
-  //getIt.init();
+
+  getIt.registerSingleton<AppRouter>(AppRouter());
 }

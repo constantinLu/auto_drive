@@ -2,7 +2,7 @@ import 'package:auto_drive/application/bloc/scraper/scraper_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mystique/mystique.dart';
+import 'package:raven/raven.dart';
 
 import '../../domain/model/fuel.dart';
 import '../../domain/model/station.dart';

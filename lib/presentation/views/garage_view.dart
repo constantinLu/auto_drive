@@ -1,8 +1,10 @@
 import 'package:auto_drive/infra/util/data.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../infra/util/assets.dart';
 
+@RoutePage()
 class GarageView extends StatelessWidget {
   const GarageView({super.key});
 

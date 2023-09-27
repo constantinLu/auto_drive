@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mystique/mystique.dart';
+import 'package:raven/raven.dart';
 
 class AppTheme {
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
@@ -19,13 +19,13 @@ class ThemeColors {
 
     scaffoldBackgroundColor: kcRevolutWhite,
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    colorScheme: ColorScheme.light().copyWith(primary: kcBlackErie, secondary: kcGreySpanish),
+    colorScheme: const ColorScheme.light().copyWith(primary: kcBlackErie, secondary: kcGreySpanish),
     appBarTheme: const AppBarTheme(
       backgroundColor: kcRevolutWhite,
     ),
 
     /// tab bar theme
-    tabBarTheme: TabBarTheme(
+    tabBarTheme: const TabBarTheme(
         indicatorColor: Colors.redAccent,
         labelStyle: TextStyle(fontSize: 5),
         unselectedLabelStyle: TextStyle(fontSize: 5)),

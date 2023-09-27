@@ -1,14 +1,17 @@
+import 'package:auto_drive/domain/extensions/sizeup_ext.dart';
 import 'package:auto_drive/presentation/views/garage_view.dart';
 import 'package:auto_drive/presentation/views/reminder_view.dart';
 import 'package:auto_drive/presentation/views/report_view.dart';
 import 'package:auto_drive/presentation/views/trip_splitter_view.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mystique/mystique.dart';
+import 'package:raven/raven.dart';
 
 import '../../application/bloc/scraper/scraper_bloc.dart';
 import '../../infra/util/assets.dart';
 
+@RoutePage()
 class DashboardWidget extends StatelessWidget {
   const DashboardWidget({Key? key}) : super(key: key);
 
@@ -19,6 +22,7 @@ class DashboardWidget extends StatelessWidget {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 12.h,
           leading: const Avatar(),
           title: const AppBarTitle(),
           actions: [IconButton(icon: const Icon(Icons.notifications), onPressed: () {})],
