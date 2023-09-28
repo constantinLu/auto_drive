@@ -67,16 +67,16 @@ class _TripSplitterViewState extends State<TripSplitterView> {
                     TextFormField(
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
-                      decoration: const InputDecoration(labelText: 'Price'),
+                      decoration: const InputDecoration(labelText: 'Distance'),
                       validator: validateNumber,
-                      onSaved: (value) => _price = value,
+                      onSaved: (value) => _distance = value,
                     ),
                     TextFormField(
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
-                      decoration: const InputDecoration(labelText: 'Distance'),
+                      decoration: const InputDecoration(labelText: 'Price'),
                       validator: validateNumber,
-                      onSaved: (value) => _distance = value,
+                      onSaved: (value) => _price = value,
                     ),
                     TextFormField(
                       keyboardType: TextInputType.number,
@@ -123,10 +123,10 @@ class _TripSplitterViewState extends State<TripSplitterView> {
 
       double price = double.parse(_price!);
       double distance = double.parse(_distance!);
-      double lperKm = double.parse(_kmPerL!);
+      double kmPerLiter = double.parse(_kmPerL!);
       double noPeople = double.parse(_noPeople!);
 
-      double totalCost = (distance / lperKm) * price;
+      double totalCost = (distance * (kmPerLiter / 100)) * price;
       double costByPerson = totalCost / noPeople;
 
       showDialog(
